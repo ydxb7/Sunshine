@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.sunshine.ForecastAdapter.ForecastAdapterOnClickHandler;
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
         // TODO (1) Pass the weather to the DetailActivity
+        intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, weatherForDay);
         startActivity(intentToStartDetailActivity);
     }
 

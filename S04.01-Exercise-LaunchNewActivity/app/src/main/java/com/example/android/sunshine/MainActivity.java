@@ -16,6 +16,7 @@
 package com.example.android.sunshine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         Context context = this;
         // TODO (3) Remove the Toast and launch the DetailActivity using an explicit Intent
 //        Toast.makeText(context, weatherForDay, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        startActivity(intent);
     }
 
     /**
