@@ -304,11 +304,45 @@ public class WeatherProvider extends ContentProvider {
      */
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
-        throw new RuntimeException("Student, you need to implement the delete method!");
 
+        // Get access to the database and write URI matching code to recognize a single item
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+
+        int match = sUriMatcher.match(uri);
+        // Keep track of the number of deleted tasks
+        int itemsDeleted = 0; // starts as 0
+
+        // Write the code to delete a single row of data
+        // [Hint] Use selections to delete an item by its row ID
+        switch (match) {
 //          TODO (2) Only implement the functionality, given the proper URI, to delete ALL rows in the weather table
+            // Handle the single item case, recognized by the ID included in the URI path
+            case CODE_WEATHER_WITH_DATE:
+                // Get the task ID from the URI path
+                String id = uri.getPathSegments().get(1);
+                // Use selections/selectionArgs to filter for this ID
+                itemsDeleted = db.delete(WeatherContract.WeatherEntry.TABLE_NAME,
+                        WeatherContract.WeatherEntry.COLUMN_WEATHER_ID + "=?", new String[]{id});
+                break;
+            case CODE_WEATHER:
+                // 删除所有行，passing "1" for the selection will delete all rows and return the number of rows deleted,
+                itemsDeleted = db.delete(WeatherContract.WeatherEntry.TABLE_NAME,
+                        "1",
+                        selectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        // Notify the resolver of a change and return the number of items deleted
+        if (itemsDeleted != 0) {
+            // A task was deleted, set notification
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
 
 //      TODO (3) Return the number of rows deleted
+        // Return the number of tasks deleted
+        return itemsDeleted;
     }
 
     /**
