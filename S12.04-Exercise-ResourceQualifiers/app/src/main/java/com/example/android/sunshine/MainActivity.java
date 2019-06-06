@@ -182,6 +182,26 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+
+    private void openLocationInMap() {
+        String addressString = SunshinePreferences
+                .getPreferredWeatherLocation(MainActivity.this);
+
+//        String addressString = "1600 Ampitheatre Parkway, CA";
+        Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(TAG, "Couldn't call " + geoLocation.toString() + ", no receiving apps installed!");
+        }
+    }
+
+
+    
     /**
      * Called by the {@link android.support.v4.app.LoaderManagerImpl} when a new Loader needs to be
      * created. This Activity only uses one loader, so we don't necessarily NEED to check the
@@ -337,7 +357,8 @@ public class MainActivity extends AppCompatActivity implements
             return true;
         }
         if (id == R.id.action_map) {
-            openPreferredLocationInMap();
+//            openPreferredLocationInMap();
+            openLocationInMap();
             return true;
         }
 
