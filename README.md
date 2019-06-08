@@ -4,6 +4,8 @@ This is the repository for the weather app that students build during the [Devel
 
 ![image](https://raw.githubusercontent.com/ydxb7/Sunshine/master/show_app.gif)
 
+This application will update the database in the background automatically for every 3-4 hours, and also support to send a notification when it update the database and only send notifications when the time interval is larger than 24 hours to avoid disturbing the user.
+
 To use this repository, fork/clone it, or download a zip using the green "Clone or download" button at the top of the file list. Each coding exercise in the course has starter code in a folder labeled like `S01.01-Exercise-CreateLayout`, and corresponding solution code labeled like `S01.01-Solution-CreateLayout`. The intended workflow is for you to open the starter code for each exercise in Android Studio, and complete each of the tasks labeled `TODO`. You can easily find all such tasks using the TODO pane at the bottom left of Android Studio.
 
 When you're done, or if you run into any problems, you can open up the solution code in another Android Studio window, and compare our solution to what you've written!

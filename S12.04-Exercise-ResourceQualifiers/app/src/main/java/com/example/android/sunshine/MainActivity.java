@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    
+
     /**
      * Called by the {@link android.support.v4.app.LoaderManagerImpl} when a new Loader needs to be
      * created. This Activity only uses one loader, so we don't necessarily NEED to check the
